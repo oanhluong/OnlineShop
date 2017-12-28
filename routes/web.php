@@ -12,14 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.pages.login');
 });
 
 
 Route::group(['prefix'=>'adminsys'], function(){
-	Route::get('/', 'Admin\HomeController@index')->name('admin-home');	
-	Route::group(['prefix'=>'login'], function(){
-		Route::get('/', 'Admin\LoginController@index')->name('admin-login');
-		Route::post('/login', 'Admin\LoginController@login')->name('admin-login-login');
-	});
+	Route::get('/', 'Admin\HomeController@index')->name('admin-home');
+    Route::get('/login', 'Admin\LoginController@showLogin')->name('admin-login-show');
+    Route::post('/login', 'Admin\LoginController@login')->name('admin-login-login');
 });

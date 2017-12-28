@@ -1,20 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
     /**
-     * Display login view.
+     * undocumented function
      *
      * @return void
      * @author 
      **/
-    public function index()
+    public function showLogin()
     {
-    	return view('admin.pages.login');
+        return view('admin.pages.login');
     }
 
     /**
@@ -23,10 +25,19 @@ class LoginController extends Controller
      * @return void
      * @author 
      **/
-    public function login()
+    public function login(Request $request)
     {
-    	if (true) {
-    		return redirect()->route('admin-home');
-    	}
+        $validationData = $request->validate([
+            'email' => 'bail|require|unique:post|max:255',
+            'password' => 'require'
+        ]);
+        if ($validationData->fails()) {
+            return 'asdasd';
+        }
+        $user = array('email' => $request->email, 'password' => $request->password);
+        if (Auth::attempt($user)) {
+            return redirect()->route('admin-home');
+        }
+        return redirect()->back();
     }
 }
