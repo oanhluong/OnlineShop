@@ -45,11 +45,21 @@
                         <form role="form" action="{{route('admin-login-login')}}" method="POST">
                         	{{csrf_field()}}
                             <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                <div class="form-group{{$errors->has('email') ? ' has-error' : ''}}">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" value="{{old('email')}}" autofocus>
+                                    @if($errors->has('email'))
+                                        <span class="help-block">
+                                            <strong>{{$errors->first('email')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group{{$errors->has('password') ? ' has-error' : ''}}">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    @if($errors->has('password'))
+                                        <span class="help-block">
+                                            <strong>{{$errors->first('password')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="checkbox">
                                     <label>
