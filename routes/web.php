@@ -20,4 +20,5 @@ Route::group(['prefix'=>'adminsys'], function(){
 	Route::get('/', 'Admin\HomeController@index')->name('admin-home');
     Route::get('/login', 'Admin\LoginController@showLogin')->name('admin-login-show');
     Route::post('/login', 'Admin\LoginController@login')->name('admin-login-login');
+    Route::POST('/logout', 'Admin\LoginController@logout')->name('admin-login-logout');
 });
