@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Base;
 
-use Criteria;
+use App\Repositories\Base\Criteria;
 
 interface CriteriaInterface
 {

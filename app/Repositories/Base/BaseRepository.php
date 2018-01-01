@@ -45,10 +45,10 @@ abstract class BaseRepository implements RepositoryInterface, CriteriaInterface
 	 * @return void
 	 * @author 
 	 **/
-	public function all($column = array('*'))
+	public function all($columns = array('*'))
 	{
 		$this->makeModel();
-		return $this->model->get($column);
+		return $this->model->get($columns);
 	}
 
 	public function paginate($perPage = 15, $columns = array('*'))
